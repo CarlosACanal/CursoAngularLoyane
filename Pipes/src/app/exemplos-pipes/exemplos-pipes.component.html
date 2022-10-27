@@ -1,0 +1,18 @@
+<h5>Exemplos de Pipes:</h5>
+
+<p>Título: {{ livro.titulo |camelCase }}</p>
+<p>Estrelas: {{livro.rating | number }}</p>
+<!-- pipe number -> | number:'casInteiros.rageDosDecimais' -->
+<p>Páginas: {{livro.numeroPaginas | number}}</p>
+<p>Preço: {{livro.preco | currency:'BRL'}}</p>
+<p>Dara lançamento: {{livro.dataLancamento | date}}</p>
+<p>URL: {{livro.url}}</p>
+<br>
+<p>livro: {{ livro | json }}</p>
+
+
+<ul>
+    <li *ngFor="let liv of livros" >
+        {{ liv | filtroArray:'ava' }}
+    </li>
+</ul>
