@@ -1,0 +1,22 @@
+<h5>Exemplo normal SEM ngStyle:</h5>
+
+<button 
+    [style.backgroundColor]="active ? 'red' : 'green'" 
+    [style.fontSize]="fontSize + 'px'"
+    (click)="active = !active">
+Click-me
+</button>
+
+<br>
+
+<input type="number" [(ngModel)]="fontSize">
+
+<h5>Exemplo COM ngStyle:</h5>
+
+<button [ngStyle]="{
+        'backgroundColor': active ? 'red' : 'green',
+        'fontSize': fontSize + 'px'
+    }" 
+    (click)="active = !active">
+Click-me
+</button>

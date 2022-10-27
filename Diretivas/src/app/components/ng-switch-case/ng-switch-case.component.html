@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+        <a class="nav-item nav-link" aria-current="page" 
+        [class.active]="aba=='inicio'"  (click)="aba='inicio'" href="#">
+            inicio 
+        </a>
+        <a class="nav-item nav-link" href="#" [class.active]="aba=='sobre'" (click)="aba='sobre'">sobre</a>
+        <a class="nav-item nav-link" href="#" [class.active]="aba=='contato'" (click)="aba='contato'">contato</a>
+    </div>
+</nav>
+
+<h5>Exemplo de SwitchCase:</h5>
+<div class="container" [ngSwitch]="aba">
+    <p *ngSwitchCase="'contato'" >Modo contato Ativado</p>
+    <p *ngSwitchCase="'sobre'" >Modo sobre Ativado</p>
+    <p *ngSwitchCase="'inicio'" >Modo inicio Ativado</p>
+</div>

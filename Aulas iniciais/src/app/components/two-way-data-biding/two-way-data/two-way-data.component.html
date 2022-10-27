@@ -1,0 +1,37 @@
+<section class="two-way-data-binding">
+    <h3>2 way data biding</h3>
+    <div>
+        <input type="text" 
+        [value]="nome"
+        (input)="nome = $any($event.target).value"
+        />
+
+        <input type="text" [(ngModel)]="nome"/>
+        <!-- O ngModel é uma representação de uma entidade, de algo do componente lógico, pode ser uma propriedade ou ate mesmo um objeto -->
+
+        <p>voce digitou o nome: {{ nome }} </p>
+    </div>
+
+    <div>
+        <input type="text" [(ngModel)]="pessoa.nome">
+        <input type="text" [(ngModel)]="pessoa.idade">
+        <p>Meu nome é {{ pessoa.nome }} e tenho {{ pessoa.idade }} anos!</p>
+    </div>
+
+    <section class="input-output-properties">
+        <article>
+            <h3>Input/Output Properties</h3>
+
+            <app-input-property [nomeCurso]="nomeDoCurso"></app-input-property>
+
+            <app-button [btnText]="btnText"></app-button>
+
+        <contador 
+            [valor]="10"
+            (mudouValor)="onMudouValor($event)">
+        </contador>
+
+        </article>
+    </section>
+
+</section>

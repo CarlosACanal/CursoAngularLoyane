@@ -1,0 +1,10 @@
+<h5>ngClass</h5>
+<p [class.favorite]="favoritado" (click)="favoritado =!favoritado">
+    &#9733;
+</p>
+
+<p (click)="favoritado =!favoritado"
+    [ngClass]="{ 'favorite' : favoritado,
+                'outraClasse': !favoritado}">
+    &#9733;
+</p>

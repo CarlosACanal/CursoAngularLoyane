@@ -1,0 +1,33 @@
+<p fundoAmarelo>
+    Texto com fundo amarelo!
+</p>
+
+<br><br><br><br>
+
+<button fundoAmarelo>click-me</button>
+
+<br><br><br><br>
+
+<p highlightMouse>
+    texto com highlight quando passo o mouse atraves do hostListener
+</p>
+
+<br><br><br><br>
+
+<p Hightlight [defaultColor]="'grey'" [highlightColor]="'purple'">
+    Texto com highlight com cores customizadas!
+</p>
+
+<br><br><br><br>
+
+
+<div *ngIf="mostrarCursos">
+    cursos visiveis
+</div>
+
+<div *ngElse="mostrarCursos">
+    cursos não visiveis
+</div>
+
+<button (click)="onMostrarCursos()">click-me</button>
+

@@ -1,0 +1,23 @@
+<!-- SEM SELETORES -->
+<div class="card" style="width: 30%;">
+    <div class="card-header">
+      titulo Utilizando ng-content SEM seletores
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <ng-content></ng-content>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- COM SELETORES -->
+<div class="card" style="width: 30%;">
+    <div class="card-header">
+        <ng-content select=".titulo"></ng-content>
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <ng-content select=".corpo"></ng-content>
+      </blockquote>
+    </div>
+  </div>

@@ -1,0 +1,36 @@
+<h5>*ngIf exemplo</h5>
+<div *ngIf="cursos.length > 0">
+    Lista de cursos:
+    <ul>
+        <li *ngFor="let curso of cursos">
+            {{curso}}
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="cursos.length == 0">
+    Não existem cursos!
+</div>
+
+<div *ngIf="mostrarCursos">
+    cursos visiveis
+</div>
+
+<div *ngIf="!mostrarCursos">
+    cursos não visiveis
+</div>
+
+<button (click)="onMostrarCursos()">click-me</button>
+
+<!-- O ngIf pode ser custoso pois destroi e constroi elementos no dom toda vez que a condição é modificada, uma opção é usar o hidden no HTML, assim ele está escondido.
+Usamos o hidden para uma árvore de elementos pequenos, como uma mensagem de validação em um formulário. Já o ngIf é recomendado para árore de elementos grandes;
+Hidden não é bom para segurança pois ele está no DOM, apenas escondido -->
+
+
+<div [hidden]="!mostrarCursos">
+    cursos visiveis
+</div>
+
+<div [hidden]="mostrarCursos">
+    cursos não visiveis
+</div> 

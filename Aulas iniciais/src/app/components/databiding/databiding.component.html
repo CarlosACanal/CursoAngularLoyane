@@ -1,0 +1,84 @@
+<!-- Interpolação: -->
+<div>
+    <h2>interpolação:</h2>
+    <p>string renderizada com inperpolação -> {{ url }}</p>
+    <br>
+    <a href={{url}}>passando um href com interpolação</a>
+    <br>
+    <p>resultado de 1 + 1 é: {{ 1+1 }} (resultado calculado com interpolação)</p>
+    <!-- consegue resolver alguns problemas com interpolação -->
+    <br>
+    <p>resultado de 1 + 1 não é: {{ 1 + 1 + getValor() }}</p>
+    <!-- posso puxar valores booleanos tbm -->
+    <br>
+    <p>Quando vamos passar um valor para uma propiedade da tag HTML, podemos fazer da seguinte forma:</p>
+    <img src="{{ urlImagem }}">
+    <img [src]="urlImagem">
+    <!-- com o colchetes no scr o angular entende que é uma propieadade HTML que está recebendo um valor;  -->
+</div>
+
+<br>
+<br>
+<!-- class e style biding: -->
+<div>
+    <div>
+        <h3>Class e Style biding</h3>
+        Selecione uma classe:
+    
+        <select #classe (change)="0">
+            <option value="alert-success">Success</option>
+            <option value="alert-info">Info</option>
+            <option value="alert-warning">Warning</option>
+            <option value="alert-danger">Error</option>
+        </select>
+    </div>
+    <br>
+    <br>
+    
+    <div class="alert {{ classe.value }}" role="alert">texto da cor do selecionado</div>
+    
+    <div class="alert" role="alert"
+    [class.alert-success]="classe.value == 'alert-success'">
+        A simple success alert—check it out!
+      </div>
+    
+      <div class="alert" role="alert"
+      [class.alert-info]="classe.value == 'alert-info'">
+        A simple info alert—check it out!
+      </div>
+    
+      <div class="alert" role="alert"
+      [class.alert-warning]="classe.value == 'alert-warning'">
+        A simple warning alert—check it out!
+      </div>
+    
+      <div class="alert" role="alert"
+      [class.alert-danger]="classe.value == 'alert-danger'">
+        A simple danger alert—check it out!
+      </div>
+    
+      <div class="alert alert-danger" role="alert"
+      [style.display]="classe.value == 'alert-danger' ? 'block' : 'none' ">
+        Esse texto só aparece em caso de erro!
+      </div>
+</div>
+
+<!-- Event boding -->
+<div>
+    <button (click)="botaoClicado()" class="btn btn-secondary">click-me!</button>
+</div>
+
+<input type="text" #campoInput 
+(keyup)="onKeyUp($event)"
+(keyup.enter)="salvarValor(campoInput.value)"
+/>
+<!-- Evento keyup retorna o valor depois da tecla ser pressionada -->
+
+<p>Em tempo real: {{textoAtual}}</p>
+<p>valor salvo apos enter: {{ valorSalvo }}  </p>
+
+<span (mouseover)="onMouseOverOut()"
+(mouseout)="onMouseOverOut()"
+[class.highlight] = "mousePosition"
+>Passe o mouse
+</span>
