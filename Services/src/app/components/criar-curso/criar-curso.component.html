@@ -1,0 +1,11 @@
+<h5>Lista de cursos originais e adicionados:</h5>
+<ul>
+    <li *ngFor="let curso of cursos">
+        {{ curso }}
+    </li>
+</ul>
+
+<input type="text" #cursoInput placeholder="Adicione um curso">
+<button type="submit" (click)="onSubmit(cursoInput.value)">Adicionar</button>
+
+<app-receber-curso-criado></app-receber-curso-criado>
