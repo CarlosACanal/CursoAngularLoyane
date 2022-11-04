@@ -1,0 +1,15 @@
+<nav>
+    <a routerLink="">
+        <h2>LOGO</h2>
+    </a>
+    <a routerLinkActive="active" routerLink="/login">Login</a>
+    <a routerLinkActive="active" routerLink="/cursos">Cursos</a>
+    <a routerLinkActive="active" [routerLink]="['curso', idcurso.value]">Cursos com ID</a>
+</nav>
+
+<div>
+    <p>Entre com ID do curso</p>
+    <br>
+    <input #idcurso>
+    <router-outlet></router-outlet>
+</div>

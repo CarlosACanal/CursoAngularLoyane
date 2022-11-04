@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-exemplos-pipes',
@@ -25,13 +26,20 @@ export class ExemplosPipesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  obterCursos(){
-    if (this.livros.length === 0 || this.filtro === undefined || this.filtro?.trim() === ''){
-      return this.livros
-    }
+  // obterCursos(){
+  //   if (this.livros.length === 0 || this.filtro === undefined || this.filtro?.trim() === ''){
+  //     return this.livros
+  //   }
+  // }
 
-    
+  valorAsync = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('valor assincrono'), 2000)
+  } );
 
-  }
+  valorAsync2 = new Observable<string>(observable => {
+    setTimeout(() => {
+      observable.next('Valor assíncrono 2');
+    }, 2000);
+  });
 
 }
