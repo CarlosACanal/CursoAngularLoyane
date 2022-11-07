@@ -1,0 +1,15 @@
+.aluno{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: antiquewhite;
+    margin: 0.5rem;
+    a{
+        padding: 0.5rem;
+    }
+}
+.aluno__detalhe{
+    width: 40%;
+    padding: 0.5rem;
+    background-color: rgb(178, 235, 216);
+}

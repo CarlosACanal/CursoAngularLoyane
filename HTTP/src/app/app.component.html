@@ -2,14 +2,17 @@
     <a routerLink="">
         <h2>LOGO</h2>
     </a>
-    <a routerLinkActive="active" routerLink="/login">Login</a>
-    <a routerLinkActive="active" routerLink="/cursos">Cursos</a>
-    <a routerLinkActive="active" [routerLink]="['curso', idcurso.value]">Cursos com ID</a>
+    <div>
+        <a routerLinkActive="active" routerLink="/login">Login</a>
+        <a routerLinkActive="active" routerLink="/cursos" [queryParams]="{pagina:1}">Cursos</a>
+        <!-- <a routerLinkActive="active" [routerLink]="['curso', idcurso.value]">Cursos com ID</a> -->
+        <a routerLinkActive="active" routerLink="/alunos">Alunos</a>
+    </div>
 </nav>
 
 <div>
-    <p>Entre com ID do curso</p>
+    <!-- <p>Entre com ID do curso</p> -->
     <br>
-    <input #idcurso>
+    <!-- <input #idcurso> -->
     <router-outlet></router-outlet>
 </div>
