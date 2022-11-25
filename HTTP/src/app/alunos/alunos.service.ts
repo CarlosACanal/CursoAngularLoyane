@@ -18,4 +18,15 @@ export class AlunosService {
   getAlunos() {
     return this.alunos;
   }
+  
+  getAlunoById(id: number) {
+    let alunos = this.getAlunos();
+    for (let i = 0; i < alunos.length; i++) {
+      let aluno = alunos[i];
+      if (aluno.id == id) {
+        return aluno;
+      }
+    }
+    return null;
+  }
 }
