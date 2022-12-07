@@ -1,4 +1,4 @@
-import { AlunosModule } from './alunos/alunos.module';
+// import { AlunosModule } from './alunos/alunos.module';
 // import { CursosModule } from './cursos/cursos.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
     // CursosModule,
-    AlunosModule,
+    // AlunosModule,
     AppRoutingModule
   ],
   providers: [],
