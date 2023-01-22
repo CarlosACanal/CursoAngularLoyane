@@ -1,3 +1,5 @@
+import { AlunoDetalheResolver } from './guards/aluno-detalhe-resolver.guard';
+import { AlunosDeactivateGuard } from './../guards/alunos-deactivate.guard';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from "@angular/core";
@@ -19,7 +21,11 @@ import { AlunoDetalheComponent } from './aluno-detalhe/aluno-detalhe.component';
         AlunosRoutingModule,
         FormsModule
     ],
-    providers: [AlunosService],
+    providers: [
+        AlunosService,
+        AlunosDeactivateGuard,
+        AlunoDetalheResolver
+    ],
     bootstrap: []
 })
 export class AlunosModule { }

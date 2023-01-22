@@ -5,7 +5,7 @@
 
 <div>
     <label for="nome">Nome</label>
-    <input id="nome" type="text" style="width: 90%;" [(ngModel)]="aluno.nome">
+    <input id="nome" type="text" style="width: 90%;" [(ngModel)]="aluno.nome" (input)="onInput()">
 </div>
 
 <div>

@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HTTP';
+
+  showMenu: boolean = false;
+
+  constructor(private authService: AuthService) { }
+
+  ngOnInit() {
+    this.authService.showMenuEmitter.subscribe(status => {
+      this.showMenu = status;
+    })
+  }
 }
