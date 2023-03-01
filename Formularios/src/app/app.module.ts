@@ -7,18 +7,21 @@ import { AppComponent } from './app.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { DataFormComponent } from './data-form/data-form.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DataFormComponent
+    DataFormComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TooltipModule.forRoot(),
     FormsModule,
-    TemplateFormModule
+    TemplateFormModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

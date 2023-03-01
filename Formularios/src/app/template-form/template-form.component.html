@@ -1,23 +1,66 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <div class="form-group" [class.has-error]="!nome.valid && nome.touched">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" name="nome" id="nome" placeholder="Informe seu nome"
-            [(ngModel)]="usuario.nome" [required]="true" #nome="ngModel">
+    <div class="form-row">
 
-        <div class="alert alert-danger" style="margin-top: 0.5rem;" *ngIf="!nome.valid && nome.touched">
-            campo obrigatório!
+        <div class="form-group col-md-12">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="Informe seu nome"
+                [(ngModel)]="usuario.nome" required #nome="ngModel">
+            <app-campo-control-erro [input]="nome"></app-campo-control-erro>
+        </div>
+        <div class="form-group col-md-12" [class.has-error]="!email.valid && email.touched">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="Informe seu Email" name="email"
+                [(ngModel)]="usuario.email" [email]="true" required #email="ngModel">
+            <app-campo-control-erro [input]="email"></app-campo-control-erro>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="cep">CEP</label>
+            <input type="number" class="form-control" id="cep" placeholder="Informe o cep" name="cep" ngModel required
+                #cep="ngModel" (blur)="consultaCEP(cep.value, f)">
+            <app-campo-control-erro [input]="cep"></app-campo-control-erro>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="numero">Numero</label>
+            <input type="number" class="form-control" id="numero" placeholder="Número" name="numero" ngModel required
+                #numero="ngModel">
+            <app-campo-control-erro [input]="numero"></app-campo-control-erro>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="complemento">Complemento</label>
+            <input type="text" class="form-control" id="complemento" placeholder="Complemento" name="complemento"
+                ngModel required #complemento="ngModel">
+            <app-campo-control-erro [input]="complemento"></app-campo-control-erro>
         </div>
     </div>
 
-    <div class="form-group" [class.has-error]="!email.valid && email.touched">
-        <label for="email">E-mail</label>
-        <input type="email" class="form-control" id="email" placeholder="Informe seu Email" name="email"
-            [(ngModel)]="usuario.email" [email]="true" [required]="true" #email="ngModel">
-
-        <div class="alert alert-danger" style="margin-top: 0.5rem;" *ngIf="!email.valid && email.touched">
-            campo obrigatório!
+    <div class="form-group">
+        <label for="rua">Rua</label>
+        <input type="text" class="form-control" id="rua" placeholder="Rua ..." name="rua" ngModel required
+            #rua="ngModel">
+        <app-campo-control-erro [input]="rua"></app-campo-control-erro>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro" ngModel required #bairro="ngModel">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="cidade">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade" ngModel required #cidade="ngModel">
+            <app-campo-control-erro [input]="cidade"></app-campo-control-erro>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" id="estado" name="estado" ngModel required #estado="ngModel">
+            <!-- <select id="estado" class="form-control" name="estado" ngModel required #estado="ngModel">
+                <option selected disabled>Escolha um estado...</option>
+                <option *ngFor="let state of states"> {{state.nome}} </option>
+            </select> -->
+            <app-campo-control-erro [input]="complemento"></app-campo-control-erro>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enviar</button>
 </form>
