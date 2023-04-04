@@ -1,6 +1,9 @@
+import { Estado } from './../interfaces/Estado';
+import { DropdownService } from './../services/dropdown.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -11,16 +14,13 @@ export class DataFormComponent {
 
   form!: FormGroup;
   form2!: FormGroup;
+  estados: Estado[] = []
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
-  ) {
-    this.form2 = this.fb.group({
-      idade: [null],
-      sexo: [null]
-    })
-  }
+    private http: HttpClient,
+    private dropdownService: DropdownService,
+  ) { }
 
   ngOnInit() {
     // this.form = new FormGroup({
@@ -46,6 +46,8 @@ export class DataFormComponent {
         estado: [null, Validators.required]
       }),
     })
+
+    this.pegarEstados();
   }
 
   consultaCEP() {
@@ -53,11 +55,17 @@ export class DataFormComponent {
 
     this.http.get(`http://viacep.com.br/ws/${cep}/json`)
       .subscribe(r => {
-        console.log(r)
         this.populaDadosForm(r);
       });
-
   }
+
+  pegarEstados() {
+    this.dropdownService.getEstados().subscribe((dados:Estado[]) => {
+      this.estados = dados;
+      console.log(this.estados)
+    });
+    }
+  
 
   populaDadosForm(r: any) {
     this.form.patchValue({
@@ -74,7 +82,6 @@ export class DataFormComponent {
       this.http.post('https://httpbin.org/post', JSON.stringify(this.form.value)).subscribe(
         {
           next: data => {
-            console.log(data);
             this.resetForm();
           },
           error: (error: any) => {
@@ -92,7 +99,6 @@ export class DataFormComponent {
     // Esse Object.keys consegue ler todas as propiedades de um objeto
     // Dentro das keys eu to falando pra ler como propiedades todos os controls do form
     Object.keys(formGroup.controls).forEach(campo => {
-      console.log(campo);
       const controller = formGroup.get(campo);
 
       // verifica se o controler é um FormGroup, pq caso seja ele vai rodar a validação novamente para cada controler presente no FormGroup
