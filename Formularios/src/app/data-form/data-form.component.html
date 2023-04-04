@@ -1,1 +1,71 @@
-<p>data-form works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" formControlName="nome" id="nome"
+                [ngClass]="{'hasError' : cssError('nome')}">
+        </div>
+
+        <div class="form-group col-md-12">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" formControlName="email"
+                [ngClass]="{'hasError' : cssError('email')}">
+        </div>
+    </div>
+
+    <div class="form-row" formGroupName="endereco">
+        <div class="form-group col-md-3">
+            <label for="cep">CEP</label>
+            <input type="number" class="form-control" id="cep" placeholder="Informe o cep" formControlName="cep"
+                [ngClass]="{'hasError' : cssError('endereco.cep')}" (blur)="consultaCEP()">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="numero">Numero</label>
+            <input type="number" class="form-control" id="numero" placeholder="Número" formControlName="numero"
+                [ngClass]="{'hasError' : cssError('endereco.numero')}">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="complemento">Complemento</label>
+            <input type="text" class="form-control" id="complemento" placeholder="Complemento"
+                formControlName="complemento">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" formControlName="bairro"
+                [ngClass]="{'hasError' : cssError('endereco.bairro')}">
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="cidade">Cidade</label>
+            <input type="text" class="form-control" id="cidade" formControlName="cidade"
+                [ngClass]="{'hasError' : cssError('endereco.cidade')}">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" id="estado" formControlName="estado"
+                [ngClass]="{'hasError' : cssError('endereco.estado')}">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Enviar </button>
+    <button class="btn" (click)="resetForm()"> Cancelar </button>
+</form>
+
+
+
+
+<br><br>
+<pre>Valores: <br>{{ form.value | json }}</pre>
+
+<!-- <form [formGroup]="form2">
+    <label for="idade">Idade</label>
+    <input type="number" id="idade" formControlName="idade">
+
+    <label for="sexo">Sexo</label>
+    <input type="text" id="sexo" formControlName="sexo">
+
+</form> -->
