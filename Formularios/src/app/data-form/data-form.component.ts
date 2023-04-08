@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs';
+import { ConsultaCepService } from '../services/consulta-cep.service';
 
 @Component({
   selector: 'app-data-form',
@@ -15,11 +16,24 @@ export class DataFormComponent {
   form!: FormGroup;
   form2!: FormGroup;
   estados: Estado[] = []
+  cargos: any[] = [
+    {nome: 'DEV', nivel:'Junior', desc: 'DEV Jr'},
+    {nome: 'DEV', nivel:'Pleno', desc: 'DEV Pl'},
+    {nome: 'DEV', nivel:'Senior', desc: 'DEV Sr'},
+  ]
+  tecnologias: any[] = [
+    {nome: "Vue", id: 1},
+    {nome: "Angular", id: 2},
+    {nome: "React", id: 3},
+    {nome: "React Native", id: 4},
+    {nome: "Ionic", id: 5}
+  ]
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private dropdownService: DropdownService,
+    private cepService: ConsultaCepService
   ) { }
 
   ngOnInit() {
@@ -45,6 +59,10 @@ export class DataFormComponent {
         cidade: [null, Validators.required],
         estado: [null, Validators.required]
       }),
+      cargo: [null],
+      tecnologias: [null],
+      newsletter: [true],
+      termos: [null, Validators.requiredTrue]
     })
 
     this.pegarEstados();
@@ -52,17 +70,13 @@ export class DataFormComponent {
 
   consultaCEP() {
     let cep = this.form.get('endereco.cep')?.value;
-
-    this.http.get(`http://viacep.com.br/ws/${cep}/json`)
-      .subscribe(r => {
-        this.populaDadosForm(r);
-      });
+    this.cepService.getDataByCep(cep).subscribe( data => 
+      this.populaDadosForm(data))
   }
 
   pegarEstados() {
     this.dropdownService.getEstados().subscribe((dados:Estado[]) => {
       this.estados = dados;
-      console.log(this.estados)
     });
     }
   
@@ -111,10 +125,10 @@ export class DataFormComponent {
     })
   }
 
-
   resetForm() {
     this.form.reset();
   }
+
 
   cssError(control: any) {
     if (!this.form.get(control)?.valid && this.form.get(control)?.touched) {

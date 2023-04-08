@@ -14,6 +14,6 @@ export class DropdownService {
    }
 
   getEstados(): Observable<Estado[]> {
-    return this.http.get<Estado[]>(this.src).pipe()
+    return this.http.get<Estado[]>(this.src).pipe();
   }
 }
