@@ -1,0 +1,19 @@
+<form [formGroup]="form" (ngSubmit)="salvarCurso()">
+    <label for="nome">Nome do curso:</label>
+    <br>
+    <input formControlName="nome" type="text" id="nome" [ngClass]="{'invalid' : hasError('nome') && submited}">
+    <div *ngIf="hasError('nome') && form.controls['nome'].errors?.['required']">
+        <p>Informe um nome ao curso</p>
+    </div>
+
+    <div *ngIf="hasError('nome') && form.controls['nome'].errors?.['minlength']">
+        <p>O nome precisa ter pelo menos 3 caracteres</p>
+    </div>
+
+    <div *ngIf="hasError('nome') && form.controls['nome'].errors?.['maxlength']">
+        <p>Máximo de 20 caracteres</p>
+    </div>
+
+    <button type="submit">Salvar</button>
+    <button type="button" (click)="cancelar()">Cancelar</button>
+</form>

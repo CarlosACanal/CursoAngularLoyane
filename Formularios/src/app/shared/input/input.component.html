@@ -1,0 +1,7 @@
+<div class="form-group col-md-12">
+    <label for="{{id}}">{{label}}</label>
+    <input [type]="type" class="form-control" [id]="id" formControlName="email"
+        [ngClass]="{'hasError' : classeCss}">
+    <app-campo-control-erro [mostrarErro]="error" [msgErro]="label"></app-campo-control-erro>
+    
+</div>

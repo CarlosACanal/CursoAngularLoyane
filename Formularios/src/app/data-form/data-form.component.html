@@ -1,15 +1,23 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-row">
-        <div class="form-group col-md-12">
+        <!-- <div class="form-group col-md-12">
             <label for="nome">Nome</label>
             <input type="text" class="form-control" formControlName="nome" id="nome"
                 [ngClass]="{'hasError' : cssError('nome')}">
-        </div>
+        </div> -->
+
+        <app-input formControlName="nome" [classeCss]="{'hasError' : cssError('nome')}" [error]="cssError('nome')" id="nome" label="informe seu nome"></app-input>
 
         <div class="form-group col-md-12">
             <label for="email">E-mail</label>
             <input type="email" class="form-control" id="email" formControlName="email"
                 [ngClass]="{'hasError' : cssError('email')}">
+        </div>
+
+        <div class="form-group col-md-12">
+            <label for="confirmarEmail">Confirmar E-mail</label>
+            <input type="email" class="form-control" id="confirmarEmail" formControlName="confirmarEmail"
+                [ngClass]="{'hasError' : cssError('confirmarEmail')}">
         </div>
     </div>
 
@@ -90,13 +98,22 @@
         </div>
     </div>
 
+
+    <div class="form-group">
+        <div  class="col-md-3" [ngClass]="{'hasError' : cssError('frameworks')}">
+            <div class="checkbox" formArrayName="frameworks" *ngFor="let frame of FormArrayControls(); let i = index;"
+            >
+                <label class="checkbox-inline">
+                    <input [formControlName]="i" type="checkbox"> 
+                    {{frameworks[i]}}
+                </label>
+            </div>
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-primary"> Enviar </button>
     <button class="btn" (click)="resetForm()"> Cancelar </button>
 </form>
 
 <br><br>
 <pre>Valores: <br>{{ form.value | json }}</pre>
-
-<!-- <div *ngFor="let estado of estados">
-    <p>{{estado.nome}} - {{estado.sigla}}</p>
-</div> -->
