@@ -1,0 +1,12 @@
+<div>
+    <label *ngIf="!fileName" for="file">Selecione um arquivo</label>
+    <label *ngIf="fileName" for="file">Arquivo {{fileName}} selecioando!</label>
+    <br>
+    <input type="file" id="file" (change)="changeFile($event)">
+</div>
+<br>
+<button type="submit" class="btn btn-primary" (click)="onUpload()">Enviar</button>
+
+<button type="submit" class="btn btn-primary" (click)="onDownloadEx()">Download Excel</button>
+
+<button type="submit" class="btn btn-primary" (click)="onDownloadPdf()">Download PDF</button>

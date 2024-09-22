@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CursosComponent } from './cursos/cursos.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

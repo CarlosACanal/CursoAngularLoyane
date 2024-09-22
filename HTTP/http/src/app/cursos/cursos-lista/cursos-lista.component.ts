@@ -18,26 +18,20 @@ export class CursosListaComponent implements OnInit {
   constructor(
     private cursoService: CursosService,
     private modalService: BsModalService,
-    ) { }
+  ) { }
 
-    handleError() {
-      console.log('oi')
-      this.bsModalRef = this.modalService.show(AlertModalComponent);
-      this.bsModalRef.content.type = 'danger';
-      this.bsModalRef.content.message = 'Erro ao carregar os cursos.';
-    }
-  
-  ngOnInit() {
-    // this.cursoService.list().subscribe( data => {
-    //   this.cursos$ = data;
-    // } )
-    
+  handleError() {
+    console.log('oi')
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = 'danger';
+    this.bsModalRef.content.message = 'Erro ao carregar os cursos.';
+  }
 
+  getCursos() {
     // Como a propriedade cursos$ é um observable, posso fazer da seguinte maneira:
-
     this.cursoService.list().subscribe({
       next: (v) => {
-        this.cursos$=v;
+        this.cursos$ = v;
       },
       error: (e) => {
         catchError(error => {
@@ -48,5 +42,17 @@ export class CursosListaComponent implements OnInit {
       },
       complete: () => console.log("completo")
     })
+  }
+
+
+  excluir(id: any) {
+    this.cursoService.remove(id).subscribe({
+      next: () => this.getCursos(),
+      error: () => (window.alert("Erro ao excluir"))
+    })
+  }
+
+  ngOnInit() {
+    this.getCursos();
   }
 }

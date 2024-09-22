@@ -5,10 +5,10 @@ import { CursoComponent } from './curso/curso.component';
 import { CursoResolverGuard } from './guards/curso-resolver.guard';
 
 const routes: Routes = [
-  {path : '', component: CursosListaComponent},
-  // Aqui passamos o resolverGuard que vai executar a lógica dentro dele assim que a rota for ativada;
-  {path: 'novo', component: CursoComponent, resolve: {curso: CursoResolverGuard}},
-  {path: 'editar/:id', component: CursoComponent, resolve: {curso: CursoResolverGuard}}
+  { path: '', component: CursosListaComponent },
+  // Aqui passamos o resolverGuard que vai executar a lógica dentro dele assim que a rota for ativada; Esse curso vai ser consultado no component
+  { path: 'novo', component: CursoComponent, resolve: { curso: CursoResolverGuard } },
+  { path: 'editar/:id', component: CursoComponent, resolve: { curso: CursoResolverGuard } }
 ];
 
 @NgModule({

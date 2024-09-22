@@ -13,7 +13,7 @@
         <th scope="row">{{curso.id}}</th>
         <td>{{curso.nome}}</td>
         <button style="margin-right: 10px;" class="btn btn-outline-warning " [routerLink]="['./editar', curso.id]">Atualizar</button>
-        <button class="btn  btn-outline-danger ">Excluir</button>
+        <button class="btn  btn-outline-danger " (click)="excluir(curso.id)">Excluir</button>
       </tr>
     </tbody>
   </table>

@@ -24,4 +24,12 @@ export class CursosService {
   create(curso: Curso) {
     return this.http.post(`${environment.baseURL}/cursos`, curso).pipe(take(1));
   }
+
+  update(curso:Curso) {
+    return this.http.put(`${environment.baseURL}/cursos/${curso.id}`, curso).pipe(take(1));
+  }
+
+  remove(id:any) {
+    return this.http.delete(`${environment.baseURL}/cursos/${id}`).pipe(take(1));
+  }
 }

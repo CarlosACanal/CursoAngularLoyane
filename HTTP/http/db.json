@@ -6,7 +6,7 @@
     },
     {
       "id": 2,
-      "nome": "curso 02"
+      "nome": "curso 022"
     },
     {
       "id": 3,
@@ -17,16 +17,8 @@
       "id": 4
     },
     {
-      "nome": "aaaaaa",
-      "id": 5
-    },
-    {
       "nome": "asaas",
       "id": 6
-    },
-    {
-      "id": 7,
-      "nome": "asa"
     }
   ]
 }

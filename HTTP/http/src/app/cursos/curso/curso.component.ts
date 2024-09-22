@@ -25,16 +25,24 @@ export class CursoComponent implements OnInit {
   salvarCurso() {
     this.submited = true;
     if (this.form.valid) {
-      this.cursosService.create(this.form.value).subscribe({
-        next: () => {
-          window.alert('Enviado com sucesso!')
-          this.form.reset();
-        },
-        error: (err) => {
-          window.alert('erro ao enviar os dados. Tente novamente em alguns instantes!')
-        },
-        complete: () => console.log('finalizou')
-      });
+      // se tem id é update
+      if (this.form.value.id) {
+        this.cursosService.update(this.form.value).subscribe({
+          next: () => { window.alert('alterado com sucesso') },
+          error: () => { window.alert('Erro ao alterar dados') }
+        });
+      } else {
+        this.cursosService.create(this.form.value).subscribe({
+          next: () => {
+            window.alert('Enviado com sucesso!')
+            this.form.reset();
+          },
+          error: (err) => {
+            window.alert('erro ao enviar os dados. Tente novamente em alguns instantes!')
+          },
+          complete: () => console.log('finalizou')
+        });
+      }
     }
   }
 
@@ -51,7 +59,7 @@ export class CursoComponent implements OnInit {
     }
   }
 
-  buildForm(curso:Curso) {
+  buildForm(curso: Curso) {
     this.form = this.fb.group({
       id: [curso.id],
       nome: [curso.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -102,7 +110,6 @@ export class CursoComponent implements OnInit {
     //     // aviso na tela de erro
     //   }
     // })
-
 
   }
 }
