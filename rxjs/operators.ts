@@ -1,49 +1,40 @@
-import { from, interval, of } from 'rxjs';
+import { from, of } from 'rxjs';
+import { filter, map, reduce, scan } from 'rxjs/operators';
 
-// operator of example
-const ofExample = of(20,30,40,50);
+// map example
+const mapObservable$ = of(1, 2, 3, 4, 5);
 
-ofExample.subscribe({
-  next: value => {
-    console.log(value)
-  },
-  error: error => {
-    console.error(error)
-  },
-  complete: () => {
-    console.log('ofExample has been completed')
-  }
-})
+mapObservable$
+    .pipe(map((value) => value * 5))
+    .subscribe((value) => console.log(value));
 
+// filter example
+const books = [
+    { name: 'The Lord of the Rings', id: 123, type: 'Fantasy' },
+    { name: 'Pride and Prejudice', id: 456, type: 'Romance' },
+    { name: 'The Great Gatsby', id: 777, type: 'Classic' },
+    { name: "Harry Potter and the Sorcerer's Stone", id: 888, type: 'Fantasy' },
+];
 
-// operator from example
+const filterObservable$ = from(books);
 
-const names: string[] = ["Carlos", "Ariel", "Gustavo", "Maria Eduarda"];
-const fromExample = from(names);
+filterObservable$
+    .pipe(filter((book) => book.type == 'Fantasy'))
+    .subscribe((result) => console.log(result));
 
-fromExample.subscribe({
-  next: value => {
-    console.log(value)
-  },
-  error: error => {
-    console.error(error)
-  },
-  complete: () => {
-    console.log('fromExample has been completed')
-  }
-})
+// scan example
+const scanObservable$ = of(10, 20, 30, 40, 50);
 
+scanObservable$
+    .pipe(scan((acc, value) => acc + value, 0))
+    .subscribe((value) => console.log(value));
 
-// operator inteval example
+// reduce example
+const recudeObservable$ = of(1, 2, 3, 4, 5);
 
-const intervalExample = interval(1000);
-
-const intervalSubscription = intervalExample.subscribe({
-  next: async (value) => console.log(value)
-})
-
-setTimeout(() => {
-  intervalSubscription.unsubscribe();
-  console.log('Unsubscribed!');
-}, 10000);
-
+recudeObservable$
+    .pipe(
+        map((value) => value * 10),
+        reduce((acc, value) => acc + value, 0)
+    )
+    .subscribe((value) => console.log(value));
